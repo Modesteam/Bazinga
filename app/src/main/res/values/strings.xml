@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bazinga</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Modesteam - Bazinga!</string>
+    <string name="hello_world">Pedra, Papel, Tesoura, Spock, Lagarto</string>
+    <string name="action_settings">Opções</string>
 </resources>
