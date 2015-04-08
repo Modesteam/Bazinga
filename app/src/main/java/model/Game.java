@@ -1,52 +1,73 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 public class Game {
 
-    private Player playerOne;
-    private Player playerTwo;
-    private GameLogger gameLog;
+	public enum PlayerName {
+		PLAYER_ONE, PLAYER_TWO
+	}
 
-    public Game(Player playerOne, Player playerTwo) {
+	private final int P_ONE_INDEX = 0;
+	private final int P_TWO_INDEX = 1;
 
-        setPlayerOne(playerOne);
-        setPlayerTwo(playerTwo);
+	private Vector<Player> players;
+	private PlayerName playersTurn;
 
-    }
+	public Game() {
+		players = new Vector<Player>(2);
+		setStandardValues();
+	}
 
-    private Player getPlayerOne() {
+	private void setStandardValues() {
+		Player playerOne = new Player(this);
+		this.players.add(this.P_ONE_INDEX, playerOne);
 
-        return this.playerOne;
+		Player playerTwo = new Player(this);
+		this.players.add(this.P_TWO_INDEX, playerTwo);
 
-    }
+		this.playersTurn = PlayerName.PLAYER_ONE;
+	}
 
-    private void setPlayerOne(Player playerOne) {
+	public PlayerName getCurrentPlayer() {
+		return this.playersTurn;
+	}
 
-        this.playerOne = playerOne;
+	protected void setPlayersChoice(PlayerName player, Choice.Option choice) {
+		switch(player) {
+			case PLAYER_ONE:
+				players.elementAt(P_ONE_INDEX).newChoice(choice);
+				break;
+			case PLAYER_TWO:
+				players.elementAt(P_TWO_INDEX).newChoice(choice);
+				break;
+			default:
+				// TODO THROW UNEXPECTED REFERENCE OF PLAYER EXCEPTION
+		}
+	}
 
-    }
+	/**private PlayerName getWinningPlayer() {
+		// TODO: ARKYE'S STOPPED HERE
+	}*/
 
-    private Player getPlayerTwo() {
+	private void setVictory(PlayerName player) {
+		switch(player) {
+			case PLAYER_ONE:
+				players.elementAt(P_ONE_INDEX).incrementVictory();
+				break;
 
-        return this.playerTwo;
+			case PLAYER_TWO:
+				players.elementAt(P_TWO_INDEX).incrementVictory();
+				break;
 
-    }
+			default:
+				// TODO THROW UNEXPECTED REFERENCE OF PLAYER EXCEPTION
 
-    private void setPlayerTwo(Player playerTwo) {
+		}
+	}
 
-        this.playerTwo = playerTwo;
-
-    }
-
-    private ArrayList<Player> getPlayers() {
-
-        ArrayList<Player> players = new ArrayList<Player>();
-
-        players.add(getPlayerOne());
-        players.add(getPlayerTwo());
-
-        return players;
-
-    }
+	public void cleanGame() {
+		players.clear();
+		setStandardValues();
+	}
 }
