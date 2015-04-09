@@ -12,6 +12,10 @@ public class Player {
 		this.game = game;
 	}
 
+	protected Boolean compareChoices(Player otherPlayer) {
+		return currentChoice.compareChoice(otherPlayer.getCurrentChoice());
+	}
+
 	protected Choice.Option getCurrentChoice() {
 		return this.currentChoice.getCurrentChoice();
 	}

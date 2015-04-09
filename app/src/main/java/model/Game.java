@@ -5,7 +5,7 @@ import java.util.Vector;
 public class Game {
 
 	public enum PlayerName {
-		PLAYER_ONE, PLAYER_TWO
+		PLAYER_ONE, PLAYER_TWO, NO_ONE
 	}
 
 	private final int P_ONE_INDEX = 0;
@@ -46,9 +46,27 @@ public class Game {
 		}
 	}
 
-	/**private PlayerName getWinningPlayer() {
-		// TODO: ARKYE'S STOPPED HERE
-	}*/
+	private PlayerName setWinningPlayer() {
+		PlayerName winner = PlayerName.NO_ONE;
+
+		Boolean isPlayerOneTheWinner = players.elementAt(P_ONE_INDEX).
+				compareChoices(players.elementAt(P_TWO_INDEX));
+		Boolean isPlayerTwoTheWinner = players.elementAt(P_TWO_INDEX).
+				compareChoices(players.elementAt(P_ONE_INDEX));
+		if(!isPlayerOneTheWinner && !isPlayerTwoTheWinner) {
+			winner = PlayerName.NO_ONE;
+		}
+		else if(isPlayerOneTheWinner) {
+			winner = PlayerName.PLAYER_ONE;
+			setVictory(PlayerName.PLAYER_ONE);
+		}
+		else if(isPlayerTwoTheWinner) {
+			winner = PlayerName.PLAYER_TWO;
+			setVictory(PlayerName.PLAYER_TWO);
+		}
+
+		return winner;
+	}
 
 	private void setVictory(PlayerName player) {
 		switch(player) {
