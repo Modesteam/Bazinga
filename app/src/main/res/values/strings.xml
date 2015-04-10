@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Modesteam - Bazinga!</string>
     <string name="hello_world">Pedra, Papel, Tesoura, Spock, Lagarto</string>
-    <string name="action_settings">Opções</string>
+	<string name="action_rules">Regras do Jogo</string>
+	<string name="action_about">Sobre</string>
+	<string name="header_main">Desafio Time #03</string>
 </resources>

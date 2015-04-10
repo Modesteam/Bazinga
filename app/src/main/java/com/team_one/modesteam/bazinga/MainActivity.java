@@ -2,15 +2,10 @@ package com.team_one.modesteam.bazinga;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -24,29 +19,33 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+			Intent intent = new Intent();
+			intent.setClass(this, AboutActivity.class);
+			startActivity(intent);
             return true;
         }
+		else if(id == R.id.action_rules) {
+			Intent intent = new Intent();
+			intent.setClass(this, RulesActivity.class);
+			startActivity(intent);
+			return true;
+		}
 
         return super.onOptionsItemSelected(item);
     }
 
-	public void showHomeActivity(View view) {
+	public void showGameActivity(View view) {
 		Intent intent = new Intent();
-		intent.setClass(this, HomeActivity.class);
+		intent.setClass(this, GameActivity.class);
 		startActivity(intent);
 	}
 }
