@@ -26,7 +26,7 @@ public class Game {
 		Player playerTwo = new Player(this);
 		this.players.add(this.P_TWO_INDEX, playerTwo);
 
-		this.playersTurn = PlayerName.PLAYER_ONE;
+		this.playersTurn = PlayerName.PLAYER_TWO;
 	}
 
 	public PlayerName getCurrentPlayer() {

@@ -4,4 +4,8 @@
 	<string name="action_rules">Regras do Jogo</string>
 	<string name="action_about">Sobre</string>
 	<string name="header_main">Desafio Time #03</string>
+    <string name="menu_game">Faça sua escolha!</string>
+    <string name="player">@string/player_one</string>
+    <string name="player_one"> player 1 </string>
+    <string name="player_two"> player 2 </string>
 </resources>
