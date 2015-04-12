@@ -27,6 +27,12 @@
 			android:name=".GameActivity"
 			android:label="Game!" >
 		</activity>
+        <activity android:name=".Game2Activity"
+            android:label="Game!">
+            </activity>
+        <activity android:name=".ResultActivity"
+            android:label="Result!">
+        </activity>
     </application>
 
 </manifest>

@@ -17,7 +17,8 @@
 		android:id="@+id/image_bazinga"
 		android:src="@mipmap/bazinga"
 		android:layout_gravity="center"
-		android:onClick="showGameActivity"/>
+		android:onClick="showGameActivity"
+        android:background="#ffeeeeee" />
 
     <FrameLayout
         android:layout_width="fill_parent"
@@ -30,7 +31,8 @@
             android:id="@+id/imageButton"
             android:src="@mipmap/play"
             android:layout_gravity="center_horizontal|bottom"
-            android:onClick="showGameActivity"/>
+            android:onClick="showGameActivity"
+            android:background="#ffeeeeee" />
     </FrameLayout>
 
 </FrameLayout>

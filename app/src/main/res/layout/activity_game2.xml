@@ -15,8 +15,10 @@
             android:id="@+id/imageButtonRock"
             android:src="@mipmap/rock"
             android:layout_gravity="left|top"
-            android:onClick="showGame2Activity"
+            android:onClick="showResultActivity"
+            android:adjustViewBounds="true"
             android:background="#ffeeeeee" />
+        />
 
         <ImageButton
             android:layout_width="150dp"
@@ -26,8 +28,9 @@
             android:layout_gravity="right|top"
             android:maxHeight="150dp"
             android:maxWidth="150dp"
-            android:onClick="showGame2Activity"
+            android:onClick="showResultActivity"
             android:background="#ffeeeeee" />
+        />
 
         <ImageButton
             android:layout_width="150dp"
@@ -35,8 +38,9 @@
             android:id="@+id/imageButtonScissor"
             android:src="@mipmap/scissor"
             android:layout_gravity="right|bottom"
-            android:onClick="showGame2Activity"
+            android:onClick="showResultActivity"
             android:background="#ffeeeeee" />
+        />
 
         <ImageButton
             android:layout_width="150dp"
@@ -44,8 +48,9 @@
             android:id="@+id/imageButtonSpock"
             android:src="@mipmap/spock"
             android:layout_gravity="left|bottom"
-            android:onClick="showGame2Activity"
+            android:onClick="showResultActivity"
             android:background="#ffeeeeee" />
+        />
 
         <ImageButton
             android:layout_width="150dp"
@@ -53,8 +58,9 @@
             android:id="@+id/imageButtonLizard"
             android:src="@mipmap/lizard"
             android:layout_gravity="center"
-            android:onClick="showGame2Activity"
+            android:onClick="showResultActivity"
             android:background="#ffeeeeee" />
+        />
     </FrameLayout>
 
     <TextView
@@ -70,7 +76,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Jogador 1"
+        android:text="Jogador 2"
         android:id="@+id/textView13"
-        android:layout_weight="0.69" />
+        android:layout_weight="0.69"
+        android:layout_gravity="right" />
 </LinearLayout>

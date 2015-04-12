@@ -11,25 +11,20 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.logging.Logger;
+import javax.xml.transform.Result;
 
-import model.Game;
 
-public class GameActivity extends ActionBarActivity {
+public class Game2Activity extends Activity {
 
-    Game game;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_game2);
     }
 
-
-
-    public void showGame2Activity(View view) {
+    public void showResultActivity(View view) {
         Intent intent2 = new Intent();
-        intent2.setClass(this, Game2Activity.class);
+        intent2.setClass(this, ResultActivity.class);
         startActivity(intent2);
     }
-
 }
