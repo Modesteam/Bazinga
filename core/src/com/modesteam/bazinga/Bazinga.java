@@ -21,20 +21,31 @@ public class Bazinga extends ApplicationAdapter {
 		skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 		stage = new Stage();
 
-		final TextButton button = new TextButton("Click me", skin, "default");
-
-		button.setWidth(Gdx.graphics.getWidth()/5);
-		button.setHeight(Gdx.graphics.getHeight()/10);
-		button.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/10, Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/20);
-
+		final TextButton button = new TextButton("Start a Game!", skin, "default");
+		button.setWidth(Gdx.graphics.getWidth());
+		button.setHeight(Gdx.graphics.getHeight()/15);
+		button.setPosition(0, Gdx.graphics.getHeight()/4);
 		button.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				button.setText("You clicked the button");
+				button.setText("Pressed: Start a Game!");
+			}
+		});
+
+		final TextButton instructionButton = new TextButton("How To Play?", skin, "default");
+		instructionButton.setWidth(Gdx.graphics.getWidth());
+		instructionButton.setHeight(Gdx.graphics.getHeight()/15);
+		instructionButton.setPosition(0,
+				button.getY() - instructionButton.getHeight());
+		instructionButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				instructionButton.setText("Pressed: How To Play?");
 			}
 		});
 
 		stage.addActor(button);
+		stage.addActor(instructionButton);
 
 		Gdx.input.setInputProcessor(stage);
 	}
