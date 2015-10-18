@@ -23,9 +23,9 @@ public class Bazinga extends ApplicationAdapter {
 
 		final TextButton button = new TextButton("Click me", skin, "default");
 
-		button.setWidth(600f);
-		button.setHeight(60f);
-		button.setPosition(Gdx.graphics.getWidth() / 2 - 300f, Gdx.graphics.getHeight() / 2 - 30f);
+		button.setWidth(Gdx.graphics.getWidth()/5);
+		button.setHeight(Gdx.graphics.getHeight()/10);
+		button.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/10, Gdx.graphics.getHeight()/2 - Gdx.graphics.getHeight()/20);
 
 		button.addListener(new ClickListener() {
 			@Override
