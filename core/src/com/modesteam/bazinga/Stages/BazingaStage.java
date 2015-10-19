@@ -45,7 +45,7 @@ public class BazingaStage {
         buttonWithListener.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                buttonWithListener.setText("Pressed: " +  buttonText);
+                buttonWithListener.setText("Pressed: " + buttonText);
             }
         });
         return buttonWithListener;
