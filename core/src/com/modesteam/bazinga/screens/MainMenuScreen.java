@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.modesteam.bazinga.Bazinga;
+import com.modesteam.bazinga.measures.Measure;
 
 public class MainMenuScreen implements Screen {
 
@@ -16,7 +17,7 @@ public class MainMenuScreen implements Screen {
 		this.game = game;
 
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 800, 480);
+		camera.setToOrtho(false, Measure.getScreenWidth(true), Measure.getScreenHeight(true));
 	}
 
 	@Override
@@ -31,11 +32,12 @@ public class MainMenuScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		camera.update();
-		game.batch.setProjectionMatrix(camera.combined);
+		game.getBatch().setProjectionMatrix(camera.combined);
 
-		game.batch.begin();
-		game.font.draw(game.batch, "Welcome to Drop!", 100, 150);
-		game.batch.end();
+		game.getBatch().begin();
+		game.getFont().draw(game.getBatch(), "Start the Game!", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 1, 1, false);
+		game.getFont().getData().setScale(Measure.getScreenScaleX(true), Measure.getScreenScaleY(true));
+		game.getBatch().end();
 
 		if (Gdx.input.isTouched()) {
 

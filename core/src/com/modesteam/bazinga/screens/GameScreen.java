@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.modesteam.bazinga.Bazinga;
+import com.modesteam.bazinga.measures.Measure;
 
 import java.util.Iterator;
 
@@ -44,7 +45,7 @@ public class GameScreen implements Screen {
 
 		// create the camera and the SpriteBatch
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 800, 480);
+		camera.setToOrtho(false, Measure.getScreenWidth(true), Measure.getScreenHeight(true));
 
 		// create a Rectangle to logically represent the bucket
 		bucket = new Rectangle();
@@ -84,17 +85,17 @@ public class GameScreen implements Screen {
 
 		// tell the SpriteBatch to render in the
 		// coordinate system specified by the camera.
-		game.batch.setProjectionMatrix(camera.combined);
+		game.getBatch().setProjectionMatrix(camera.combined);
 
 		// begin a new batch and draw the bucket and
 		// all drops
-		game.batch.begin();
-		game.font.draw(game.batch, "Drops Collected: " + dropsGathered, 0, 480);
-		game.batch.draw(bucketImage, bucket.x, bucket.y);
+		game.getBatch().begin();
+		game.getFont().draw(game.getBatch(), "Drops Collected: " + dropsGathered, 0, 480);
+		game.getBatch().draw(bucketImage, bucket.x, bucket.y);
 		for (Rectangle raindrop : raindrops) {
-			game.batch.draw(dropImage, raindrop.x, raindrop.y);
+			game.getBatch().draw(dropImage, raindrop.x, raindrop.y);
 		}
-		game.batch.end();
+		game.getBatch().end();
 
 		// process user input
 		if (Gdx.input.isTouched()) {
