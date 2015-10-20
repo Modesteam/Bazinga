@@ -1,55 +1,30 @@
 package com.modesteam.bazinga;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.modesteam.bazinga.Stages.BazingaStage;
-import com.modesteam.bazinga.Stages.Main.MainStage;
+import com.modesteam.bazinga.screens.MainMenuScreen;
 
-public class Bazinga extends ApplicationAdapter {
-    private SpriteBatch batch;
-    private BazingaStage bazingaStage;
 
-    @Override
-    public void create() {
-        batch = new SpriteBatch();
-        bazingaStage = new MainStage();
-        Gdx.input.setInputProcessor(bazingaStage.getStage());
-    }
+public class Bazinga extends Game {
 
-    @Override
-    public void dispose() {
-        batch.dispose();
-    }
+	public SpriteBatch batch;
+	public BitmapFont font;
 
-    @Override
-    public void render() {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	public void create() {
+		batch = new SpriteBatch();
+		//Use LibGDX's default Arial font.
+		font = new BitmapFont();
+		this.setScreen(new MainMenuScreen(this));
+	}
 
-        batch.begin();
-        bazingaStage.getStage().draw();
-        batch.end();
-    }
+	public void render() {
+		super.render(); //important!
+	}
 
-    @Override
-    public void resize(int width, int height) {
-        // Nothing
-    }
+	public void dispose() {
+		batch.dispose();
+		font.dispose();
+	}
 
-    @Override
-    public void pause() {
-        // Nothing
-    }
-
-    @Override
-    public void resume() {
-        // Nothing
-    }
 }
