@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.modesteam.bazinga.Bazinga;
 import com.modesteam.bazinga.measures.Measure;
 
@@ -11,6 +13,7 @@ public class MainMenuScreen implements Screen {
 
 	private final Bazinga game;
 	private OrthographicCamera camera;
+
 
 	public MainMenuScreen(final Bazinga game) {
 
@@ -31,13 +34,18 @@ public class MainMenuScreen implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0.2f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
+
 		camera.update();
 		game.getBatch().setProjectionMatrix(camera.combined);
 
 		game.getBatch().begin();
-		game.getFont().draw(game.getBatch(), "Start the Game!", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 1, 1, false);
-		game.getFont().getData().setScale(Measure.getScreenScaleX(true), Measure.getScreenScaleY(true));
+
+
+		game.getFont().draw(game.getBatch(), "Start the Game!", Gdx.graphics.getWidth()*(1f/2f), Gdx.graphics.getHeight()*(5f/8f), 1, 1, false);
+
 		game.getBatch().end();
+
 
 		if (Gdx.input.isTouched()) {
 
