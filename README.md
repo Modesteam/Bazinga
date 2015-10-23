@@ -1,2 +1,5 @@
 # Bazinga
-Desafio: Jonathan, Lucas Rufino e Rafael Akiyoshi
+
+> Original Team: Jonathan, Lucas Rufino e Rafael Akiyoshi
+
+> Current Team: Jonathan (@Arkye), Laércio (@LaercioS)
