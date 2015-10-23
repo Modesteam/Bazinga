@@ -22,11 +22,9 @@ public class Bazinga extends Game {
 		parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		batch = new SpriteBatch();
 
-		//Use LibGDX's default Arial font.
-
 		this.setScreen(new MainMenuScreen(this));
 
-		parameter.size = (int) Measure.getFontSize();
+		parameter.size = Measure.getFontSize(true);
 		font = generator.generateFont(parameter); // font size 12 pixels
 		generator.dispose(); // don't forget to dispose to avoid memory leaks!
 	}
