@@ -78,7 +78,7 @@ public abstract class Measure {
 	}
 
 	public static int getFontSize(Boolean verbose) {
-		int fontSize = ceil(getScreenHeight(false) / 27f);
+		int fontSize = ceil(getScreenHeight(false) / 18f);
 
 		if (verbose) {
 			System.out.println("FONT SIZE: " + fontSize);
