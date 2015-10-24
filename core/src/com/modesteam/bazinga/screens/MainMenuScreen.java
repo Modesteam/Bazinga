@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.modesteam.bazinga.Bazinga;
+import com.modesteam.bazinga.entities.TextEntity;
 import com.modesteam.bazinga.measures.Measure;
 
 public class MainMenuScreen implements Screen {
@@ -14,10 +15,28 @@ public class MainMenuScreen implements Screen {
 	private final Bazinga game;
 	private OrthographicCamera camera;
 	private Sprite logoSprite;
+	private TextEntity startText;
+	private TextEntity instructionsText;
+	private TextEntity exitText;
 
 	public MainMenuScreen(final Bazinga game) {
 
 		this.game = game;
+
+		startText = new TextEntity();
+		startText.setText("Start the game!");
+		startText.setPosition(Measure.getCenterScreenX(false), Measure.getProportionalY(3f, 8f, false));
+		startText.setSize(Measure.getScreenWidth(false), Measure.getProportionalY(1f, 8f, false));
+
+		instructionsText = new TextEntity();
+		instructionsText.setText("How To Play?");
+		instructionsText.setPosition(Measure.getCenterScreenX(false), Measure.getProportionalY(1f, 4f, false));
+		instructionsText.setSize(Measure.getScreenWidth(false), Measure.getProportionalY(1f, 8f, false));
+
+		exitText = new TextEntity();
+		exitText.setText("Exit the game!");
+		exitText.setPosition(Measure.getCenterScreenX(false), Measure.getProportionalY(1f, 8f, false));
+		exitText.setSize(Measure.getScreenWidth(false), Measure.getProportionalY(1f, 8f, false));
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Measure.getScreenWidth(true), Measure.getScreenHeight(true));
@@ -25,7 +44,7 @@ public class MainMenuScreen implements Screen {
 		logoSprite = new Sprite(logoTexture);
 		logoSprite.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 		logoSprite.setSize(Measure.getScreenWidth(true), Measure.getProportionalY(5f, 8f, true));
-		logoSprite.setPosition(0,Measure.getProportionalY(3f, 8f, false));
+		logoSprite.setPosition(0, Measure.getProportionalY(3f, 8f, false));
 	}
 
 	@Override
@@ -44,20 +63,18 @@ public class MainMenuScreen implements Screen {
 
 		game.getBatch().begin();
 		logoSprite.draw(game.getBatch());
-		game.getFont().draw(game.getBatch(), "Start the Game!", Measure.getCenterScreenX(false),
-				Measure.getProportionalY(3f, 8f, false), 1, 1, false);
-		game.getFont().draw(game.getBatch(), "How To Play?", Measure.getCenterScreenX(false),
-				Measure.getProportionalY(1f, 4f, false), 1, 1, false);
-		game.getFont().draw(game.getBatch(), "Exit The Game", Measure.getCenterScreenX(false),
-				Measure.getProportionalY(1f, 8f, false), 1, 1, false);
-		game.getBatch().end();
 
+		startText.draw(game);
+		instructionsText.draw(game);
+		exitText.draw(game);
+
+		game.getBatch().end();
 
 		if (Gdx.input.isTouched()) {
 
-			game.setScreen(new GameScreen(game));
-			dispose();
 		}
+		game.setScreen(new GameScreen(game));
+		dispose();
 	}
 
 	@Override
