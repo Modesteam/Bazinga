@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.modesteam.bazinga.Bazinga;
 import com.modesteam.bazinga.entities.TextEntity;
 import com.modesteam.bazinga.measures.Measure;
+import com.modesteam.bazinga.measures.RectangleCollider;
 
 public class MainMenuScreen implements Screen {
 
@@ -72,8 +73,13 @@ public class MainMenuScreen implements Screen {
 
 		if (Gdx.input.isTouched()) {
 
+			if(RectangleCollider.areCollided(Gdx.input.getX(),
+					Gdx.input.getY(), startText.getRect())) {
+
+				game.setScreen(new GameScreen(game));
+			}
 		}
-		game.setScreen(new GameScreen(game));
+
 		dispose();
 	}
 

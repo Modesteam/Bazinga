@@ -40,6 +40,11 @@ public class TextEntity {
 		this.text = text;
 	}
 
+	public Rectangle getRect() {
+
+		return this.boundingBox;
+	}
+
 	public void setRect(float x, float y, float height, float width) {
 
 		this.boundingBox.set(x, y, height, width);
