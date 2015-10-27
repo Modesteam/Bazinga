@@ -2,7 +2,9 @@ package com.modesteam.bazinga;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.modesteam.bazinga.measures.Measure;
@@ -15,18 +17,20 @@ public class Bazinga extends Game {
 	private FreeTypeFontGenerator.FreeTypeFontParameter parameter;
 	private SpriteBatch batch;
 	private BitmapFont font;
-
+	private static GlyphLayout glyphLayout;
 
 	public void create() {
 		generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/BPmono.ttf"));
 		parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		batch = new SpriteBatch();
-
-		this.setScreen(new MainMenuScreen(this));
+		glyphLayout = new GlyphLayout();
 
 		parameter.size = Measure.getFontSize(true);
-		font = generator.generateFont(parameter); // font size 12 pixels
-		generator.dispose(); // don't forget to dispose to avoid memory leaks!
+		font = generator.generateFont(parameter);
+		font.setColor(Color.WHITE);
+		generator.dispose();
+
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 	public void render() {
@@ -46,5 +50,9 @@ public class Bazinga extends Game {
 
 	public BitmapFont getFont() {
 		return font;
+	}
+
+	public GlyphLayout getGlyphLayout() {
+		return glyphLayout;
 	}
 }

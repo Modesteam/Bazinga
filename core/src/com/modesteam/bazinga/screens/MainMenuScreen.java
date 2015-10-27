@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
 import com.modesteam.bazinga.Bazinga;
 import com.modesteam.bazinga.entities.TextEntity;
 import com.modesteam.bazinga.measures.Measure;
@@ -16,28 +17,16 @@ public class MainMenuScreen implements Screen {
 	private final Bazinga game;
 	private OrthographicCamera camera;
 	private Sprite logoSprite;
-	private TextEntity startText;
-	private TextEntity instructionsText;
-	private TextEntity exitText;
+	private Array<TextEntity> texts;
 
 	public MainMenuScreen(final Bazinga game) {
 
 		this.game = game;
 
-		startText = new TextEntity();
-		startText.setText("Start the game!");
-		startText.setPosition(Measure.getCenterScreenX(false), Measure.getProportionalY(3f, 8f, false));
-		startText.setSize(Measure.getScreenWidth(false), Measure.getProportionalY(1f, 8f, false));
-
-		instructionsText = new TextEntity();
-		instructionsText.setText("How To Play?");
-		instructionsText.setPosition(Measure.getCenterScreenX(false), Measure.getProportionalY(1f, 4f, false));
-		instructionsText.setSize(Measure.getScreenWidth(false), Measure.getProportionalY(1f, 8f, false));
-
-		exitText = new TextEntity();
-		exitText.setText("Exit the game!");
-		exitText.setPosition(Measure.getCenterScreenX(false), Measure.getProportionalY(1f, 8f, false));
-		exitText.setSize(Measure.getScreenWidth(false), Measure.getProportionalY(1f, 8f, false));
+		texts = new Array<TextEntity>();
+		texts.add(new TextEntity("Start the game", 3f, 8f, game, new GameScreen(game)));
+		texts.add(new TextEntity("How to Play?", 1f, 4f, game, new GameScreen(game)));
+		texts.add(new TextEntity("Exit the game!", 1f, 8f, game, new GameScreen(game)));
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Measure.getScreenWidth(true), Measure.getScreenHeight(true));
@@ -65,18 +54,23 @@ public class MainMenuScreen implements Screen {
 		game.getBatch().begin();
 		logoSprite.draw(game.getBatch());
 
-		startText.draw(game);
-		instructionsText.draw(game);
-		exitText.draw(game);
+		for (TextEntity text : texts) {
+
+			text.draw(game);
+		}
 
 		game.getBatch().end();
 
 		if (Gdx.input.isTouched()) {
 
-			if(RectangleCollider.areCollided(Gdx.input.getX(),
-					Gdx.input.getY(), startText.getRect())) {
+			float x = Gdx.input.getX();
+			float y = Gdx.input.getY();
 
-				game.setScreen(new GameScreen(game));
+			for (TextEntity text : texts) {
+				if (RectangleCollider.areCollided(x, y, text.getBoundingBox())) {
+
+					game.setScreen(text.getScreen());
+				}
 			}
 		}
 
