@@ -29,7 +29,6 @@ public class Bazinga extends Game {
 		font = generator.generateFont(parameter);
 		font.setColor(Color.WHITE);
 		generator.dispose();
-
 		this.setScreen(new MainMenuScreen(this));
 	}
 

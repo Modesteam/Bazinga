@@ -7,11 +7,10 @@ public abstract class RectangleCollider {
 	public static boolean areCollided(float x, float y, Rectangle rect) {
 
 		float correctY = Measure.getScreenHeight(false) - y;
-		float correctRectX = rect.x - (rect.width/2);
 
 		boolean areCollided = false;
 
-		if (correctRectX <= x && correctRectX + rect.width >= x &&
+		if (rect.x <= x && rect.x + rect.width >= x &&
 				rect.y - rect.height <= correctY && rect.y >= correctY) {
 			areCollided = true;
 		}

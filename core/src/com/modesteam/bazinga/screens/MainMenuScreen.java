@@ -25,8 +25,8 @@ public class MainMenuScreen implements Screen {
 
 		texts = new Array<TextEntity>();
 		texts.add(new TextEntity("Start the game", 3f, 8f, game, new GameScreen(game)));
-		texts.add(new TextEntity("How to Play?", 1f, 4f, game, new GameScreen(game)));
-		texts.add(new TextEntity("Exit the game!", 1f, 8f, game, new GameScreen(game)));
+		texts.add(new TextEntity("How to Play?", 1f, 4f, game, new HowToPlayScreen(game)));
+		texts.add(new TextEntity("Exit the game!", 1f, 8f, game, new ExitScreen()));
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Measure.getScreenWidth(true), Measure.getScreenHeight(true));
