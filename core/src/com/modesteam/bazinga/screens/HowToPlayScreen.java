@@ -19,8 +19,8 @@ public class HowToPlayScreen implements Screen {
 		this.game = game;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Measure.getScreenWidth(true), Measure.getScreenHeight(true));
-		instructions = new TextEntity("WWWWWWWWWWWWWWWWWWWWWWWWWW",
-				3f, 8f, game, new GameScreen(game), false, 100);
+		instructions = new TextEntity("Bazinga is similar to Jo-Ken-Po, or Rock-Scissor-Paper.",
+				3f, 8f, game, new GameScreen(game), false, 0);
 
 	}
 
