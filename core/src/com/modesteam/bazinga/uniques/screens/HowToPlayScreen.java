@@ -1,13 +1,12 @@
-package com.modesteam.bazinga.screens;
+package com.modesteam.bazinga.uniques.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.modesteam.bazinga.Bazinga;
+import com.modesteam.bazinga.uniques.Bazinga;
 import com.modesteam.bazinga.entities.TextEntity;
-import com.modesteam.bazinga.measures.Measure;
-import com.modesteam.bazinga.measures.RectangleCollider;
+import com.modesteam.bazinga.uniques.measures.Measure;
 
 public class HowToPlayScreen implements Screen {
 	TextEntity instructions;
@@ -17,11 +16,12 @@ public class HowToPlayScreen implements Screen {
 	public HowToPlayScreen(Bazinga game) {
 
 		this.game = game;
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, Measure.getScreenWidth(true), Measure.getScreenHeight(true));
-		instructions = new TextEntity("Bazinga is similar to Jo-Ken-Po, or Rock-Scissor-Paper.",
-				3f, 8f, game, new GameScreen(game), false, 0);
 
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, Measure.getScreenWidth(), Measure.getScreenHeight());
+
+		instructions = new TextEntity("Bazinga is similar to Jo-Ken-Po, or Rock-Scissor-Paper.",
+				(3f/8f), new GameScreen(game));
 	}
 
 	@Override
@@ -43,12 +43,6 @@ public class HowToPlayScreen implements Screen {
 		instructions.draw(game);
 
 		game.getBatch().end();
-
-		if (Gdx.input.isTouched()) {
-
-		}
-
-		dispose();
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package com.modesteam.bazinga.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.modesteam.bazinga.Bazinga;
+import com.modesteam.bazinga.uniques.Bazinga;
 
 public class HtmlLauncher extends GwtApplication {
 

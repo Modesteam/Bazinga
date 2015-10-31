@@ -1,4 +1,4 @@
-package com.modesteam.bazinga.screens;
+package com.modesteam.bazinga.uniques.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
-import com.modesteam.bazinga.Bazinga;
+import com.modesteam.bazinga.uniques.Bazinga;
 import com.modesteam.bazinga.entities.TextEntity;
-import com.modesteam.bazinga.measures.Measure;
-import com.modesteam.bazinga.measures.RectangleCollider;
+import com.modesteam.bazinga.uniques.measures.Measure;
+import com.modesteam.bazinga.uniques.measures.RectangleCollider;
 
 public class MainMenuScreen implements Screen {
 
@@ -24,17 +24,18 @@ public class MainMenuScreen implements Screen {
 		this.game = game;
 
 		texts = new Array<TextEntity>();
-		texts.add(new TextEntity("Start the game", 3f, 8f, game, new GameScreen(game)));
-		texts.add(new TextEntity("How to Play?", 1f, 4f, game, new HowToPlayScreen(game)));
-		texts.add(new TextEntity("Exit the game!", 1f, 8f, game, new ExitScreen()));
+		texts.add(new TextEntity("Start the game", (3f / 8f), new GameScreen(game)));
+		texts.add(new TextEntity("How to Play?", (1f / 4f), new HowToPlayScreen(game)));
+		texts.add(new TextEntity("Exit the game!", (1f / 8f), new ExitScreen()));
 
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, Measure.getScreenWidth(true), Measure.getScreenHeight(true));
+		camera.setToOrtho(false, Measure.getScreenWidth(), Measure.getScreenHeight());
 		Texture logoTexture = new Texture(Gdx.files.internal("bazinga.png"));
+
 		logoSprite = new Sprite(logoTexture);
 		logoSprite.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-		logoSprite.setSize(Measure.getScreenWidth(true), Measure.getProportionalY(5f, 8f, true));
-		logoSprite.setPosition(0, Measure.getProportionalY(3f, 8f, false));
+		logoSprite.setSize(Measure.getScreenWidth(), Measure.getProportionalY((5f / 8f)));
+		logoSprite.setPosition(0, Measure.getProportionalY((3f / 8f)));
 	}
 
 	@Override
@@ -59,21 +60,26 @@ public class MainMenuScreen implements Screen {
 			text.draw(game);
 		}
 
+		updateScreen();
+
 		game.getBatch().end();
+	}
+
+	private void updateScreen() {
 
 		if (Gdx.input.isTouched()) {
+
 			float x = Gdx.input.getX();
 			float y = Gdx.input.getY();
 
 			for (TextEntity text : texts) {
-				System.out.println("Dentro do for mais fora do if." + text.getBoundingBox().x + " " + text.getBoundingBox().y);
-				if (RectangleCollider.areCollided(x, y, text.getBoundingBox())) {
-					System.out.println("Print qualquer.");
+
+				if (RectangleCollider.areCollided(x, y, text.getCollisionRect())) {
+
 					game.setScreen(text.getScreen());
 				}
 			}
 		}
-		dispose();
 	}
 
 	@Override

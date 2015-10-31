@@ -1,7 +1,6 @@
-package com.modesteam.bazinga.screens;
+package com.modesteam.bazinga.uniques.screens;
 
 import com.badlogic.gdx.Screen;
-import com.modesteam.bazinga.Bazinga;
 
 public class ExitScreen implements Screen {
 
