@@ -33,6 +33,7 @@ public class TextEntity {
 		this.text = text;
 		this.vectorEnds = generateVectorEnds(this.text.length(), getMaxQuantityChars(game));
 		System.out.println(toStringVectorEnds(this.vectorEnds));
+
 		game.getGlyphLayout().setText(game.getFont(), text);
 		this.rect = new Rectangle(Measure.getCenterScreenX(false),
 				Measure.getProportionalY(yNumerator, yDenominator, false),
@@ -47,8 +48,10 @@ public class TextEntity {
 		this.targetWidth = targetWidth;
 		this.wrap = wrap;
 		this.screen = screen;
-
 		this.text = text;
+		this.vectorEnds = generateVectorEnds(this.text.length(), getMaxQuantityChars(game));
+		System.out.println(toStringVectorEnds(this.vectorEnds));
+
 		game.getGlyphLayout().setText(game.getFont(), text);
 		this.rect = new Rectangle(Measure.getCenterScreenX(false),
 				Measure.getProportionalY(yNumerator, yDenominator, false),
@@ -57,22 +60,20 @@ public class TextEntity {
 	}
 
 	public void draw(Bazinga gameInstance) {
-
-		/*int stringLength = this.text.length();
 		int aux;
-		int breakLine = 0;
-		int fim = 0;
-		int inicio = 0;
-		int ct = (int) getMaxQuantityChars(gameInstance);
-		for (aux = 0; aux <= stringLength; aux = aux + ct) {
-			if (fim > ct) {
+		int breakLine;
+		final float EXTRASPACE = (float) 1.2;
 
-			}+ (breakLine * getMinimalY(gameInstance))
-			breakLine++;*/
-		gameInstance.getFont().draw(gameInstance.getBatch(), text, rect.getX(),
-				(rect.getY()),
-				targetWidth, DEFAULT_HEIGHT_ALIGN, wrap);
-		//}
+		for (aux = 0, breakLine = 0; aux < vectorEnds.size(); aux++, breakLine++) {
+			if (aux == 0) {
+				gameInstance.getFont().draw(gameInstance.getBatch(), text, rect.getX(),
+						(rect.getY()), 0, vectorEnds.get(aux), targetWidth, DEFAULT_HEIGHT_ALIGN, wrap);
+			} else {
+				gameInstance.getFont().draw(gameInstance.getBatch(), text, rect.getX(),
+						(rect.getY() - ((breakLine * getMinimalY(gameInstance)) * EXTRASPACE)), vectorEnds.get(aux - 1),
+						vectorEnds.get(aux), targetWidth, DEFAULT_HEIGHT_ALIGN, wrap);
+			}
+		}
 	}
 
 	public ArrayList<Integer> generateVectorEnds(int stringLegnth, int ct) {
@@ -85,8 +86,8 @@ public class TextEntity {
 			if (aux == 0) {
 				vectorEnds.add(Integer.valueOf(0));
 			} else {
-				if ((vectorEnds.get(vectorEnds.size()-1) + ct) < stringLegnth) {
-					vectorEnds.add(Integer.valueOf(vectorEnds.get(vectorEnds.size()-1) + ct));
+				if ((vectorEnds.get(vectorEnds.size() - 1) + ct) < stringLegnth) {
+					vectorEnds.add(Integer.valueOf(vectorEnds.get(vectorEnds.size() - 1) + ct));
 				} else {
 					vectorEnds.add(Integer.valueOf(stringLegnth));
 					exit = true;

@@ -62,18 +62,17 @@ public class MainMenuScreen implements Screen {
 		game.getBatch().end();
 
 		if (Gdx.input.isTouched()) {
-
 			float x = Gdx.input.getX();
 			float y = Gdx.input.getY();
 
 			for (TextEntity text : texts) {
+				System.out.println("Dentro do for mais fora do if." + text.getBoundingBox().x + " " + text.getBoundingBox().y);
 				if (RectangleCollider.areCollided(x, y, text.getBoundingBox())) {
-
+					System.out.println("Print qualquer.");
 					game.setScreen(text.getScreen());
 				}
 			}
 		}
-
 		dispose();
 	}
 
