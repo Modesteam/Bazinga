@@ -2,18 +2,20 @@ package com.modesteam.bazinga.uniques.measures;
 
 import com.badlogic.gdx.Gdx;
 
-import static com.badlogic.gdx.math.MathUtils.ceil;
 import static java.lang.Math.round;
 
 public abstract class Measure {
-	private static final float MINIMUM_HEIGHT = 320;
-	private static final float MINIMUM_WIDTH = 240;
+	private static final float MINIMUM_HEIGHT = 320f;
+	private static final float MINIMUM_WIDTH = 240f;
+	private static final float FONT_SIZE_RATIO = 18f;
 
 	private static float screenWidth;
 	private static float screenHeight;
 
 	private static float centerScreenX;
 	private static float centerScreenY;
+
+	private static int fontSize;
 
 	public static void generateStandardValues() {
 
@@ -22,6 +24,8 @@ public abstract class Measure {
 
 		centerScreenX = screenWidth/2f;
 		centerScreenY = screenHeight/2f;
+
+		fontSize = round(screenHeight / FONT_SIZE_RATIO);
 	}
 
 	public static float getScreenWidth() {
@@ -48,8 +52,8 @@ public abstract class Measure {
 
 
 	public static int getFontSize() {
-		int fontSize = round(screenHeight / 18f);
 
 		return fontSize;
 	}
+
 }

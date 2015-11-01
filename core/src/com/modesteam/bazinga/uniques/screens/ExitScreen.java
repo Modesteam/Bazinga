@@ -1,10 +1,11 @@
 package com.modesteam.bazinga.uniques.screens;
 
 import com.badlogic.gdx.Screen;
+import com.modesteam.bazinga.uniques.Bazinga;
 
 public class ExitScreen implements Screen {
 
-	public ExitScreen() {
+	public ExitScreen(Bazinga game) {
 
 	}
 

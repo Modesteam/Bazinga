@@ -4,19 +4,21 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.modesteam.bazinga.uniques.measures.Measure;
 import com.modesteam.bazinga.uniques.screens.MainMenuScreen;
-
+import com.modesteam.bazinga.uniques.screens.ScreenHandler;
+import com.modesteam.bazinga.uniques.screens.ScreenType;
 
 public class Bazinga extends Game {
 
 	private SpriteBatch batch;
+	private ScreenHandler screenHandler;
 
 	public void create() {
 
 		generateStandardMeasureValues();
 		generateStandardAssets();
 		batch = new SpriteBatch();
-
-		this.setScreen(new MainMenuScreen(this));
+		screenHandler = new ScreenHandler(this);
+		this.setScreen(screenHandler.get(ScreenType.MAIN_MENU, this));
 	}
 
 	public void render() {
@@ -42,5 +44,9 @@ public class Bazinga extends Game {
 
 	public SpriteBatch getBatch() {
 		return batch;
+	}
+
+	public ScreenHandler getScreenHandler() {
+		return screenHandler;
 	}
 }

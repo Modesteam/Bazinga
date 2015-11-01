@@ -4,12 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.Array;
+import com.modesteam.bazinga.entities.text.LineTextEntity;
+import com.modesteam.bazinga.entities.text.ParagraphEntity;
+import com.modesteam.bazinga.entities.text.TextEntity;
 import com.modesteam.bazinga.uniques.Bazinga;
-import com.modesteam.bazinga.entities.TextEntity;
+import com.modesteam.bazinga.uniques.InputHandle;
 import com.modesteam.bazinga.uniques.measures.Measure;
 
 public class HowToPlayScreen implements Screen {
-	TextEntity instructions;
+	Array<TextEntity> texts;
 	Bazinga game;
 	private OrthographicCamera camera;
 
@@ -20,8 +24,11 @@ public class HowToPlayScreen implements Screen {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Measure.getScreenWidth(), Measure.getScreenHeight());
 
-		instructions = new TextEntity("Bazinga is similar to Jo-Ken-Po, or Rock-Scissor-Paper.",
-				(3f/8f), new GameScreen(game));
+		texts = new Array<TextEntity>();
+		texts.add(new ParagraphEntity("Bazinga is similar to Jo-Ken-Po, or Rock-Scissor-Paper.",
+				Measure.getProportionalY((1f / 2f)), ScreenType.MAIN_MENU));
+		texts.add(new LineTextEntity("Back to Main Menu",
+				Measure.getProportionalY((1f / 10f)), ScreenType.MAIN_MENU));
 	}
 
 	@Override
@@ -40,7 +47,12 @@ public class HowToPlayScreen implements Screen {
 
 		game.getBatch().begin();
 
-		instructions.draw(game);
+		for (TextEntity text : texts) {
+
+			text.draw(game);
+		}
+
+		InputHandle.handleTextEntities(texts, game);
 
 		game.getBatch().end();
 	}
