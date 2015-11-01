@@ -1,4 +1,4 @@
-package com.modesteam.bazinga.entities.types;
+package com.modesteam.bazinga.entities.text.types;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -6,9 +6,7 @@ import com.modesteam.bazinga.uniques.Bazinga;
 import com.modesteam.bazinga.uniques.Font;
 import com.modesteam.bazinga.uniques.measures.Measure;
 
-public class LineTextDrawBox {
-
-	private final int CORRECTION_FACTOR = 3;
+public class TextDrawBox {
 
 	private final float DEFAULT_X = 0;
 	private final float DEFAULT_Y = 0;
@@ -37,10 +35,24 @@ public class LineTextDrawBox {
 	private Color color;
 	private GlyphLayout glyphLayout;
 
-	public LineTextDrawBox(String text) {
+	public TextDrawBox(String text) {
 
 		createGlyph(text);
 		clearAllSettings();
+	}
+
+	public TextDrawBox(String text, float y) {
+
+		createGlyph(text);
+		clearAllSettings();
+		setDrawPoint(y);
+	}
+
+	public TextDrawBox(String text, float x, float y) {
+
+		createGlyph(text);
+		clearAllSettings();
+		setDrawPoint(x, y);
 	}
 
 	private void createGlyph(String text) {
@@ -78,11 +90,22 @@ public class LineTextDrawBox {
 		return y;
 	}
 
-	public void setDrawPoint(float yRatio) {
+	public void setDrawPoint(float x, float y) {
+
+		if (x == Measure.getCenterScreenX()) {
+
+			haveCenteredX = true;
+		}
+
+		this.x = x;
+		this.y = y;
+	}
+
+	public void setDrawPoint(float y) {
 
 		x = Measure.getCenterScreenX();
 		haveCenteredX = true;
-		y = Measure.getProportionalY(yRatio);
+		this.y = y;
 	}
 
 	public void clearStringBounds() {
@@ -112,6 +135,6 @@ public class LineTextDrawBox {
 
 	public void draw(Bazinga game) {
 
-		Font.getFont().draw(game.getBatch(),text,x,y,start,end,targetWidth,halign,wrap);
+		Font.getFont().draw(game.getBatch(), text, x, y, start, end, targetWidth, halign, wrap);
 	}
 }

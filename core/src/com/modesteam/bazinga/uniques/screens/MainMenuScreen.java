@@ -7,10 +7,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
+import com.modesteam.bazinga.entities.text.LineTextEntity;
+import com.modesteam.bazinga.entities.text.TextEntity;
 import com.modesteam.bazinga.uniques.Bazinga;
-import com.modesteam.bazinga.entities.TextEntity;
+import com.modesteam.bazinga.uniques.InputHandle;
 import com.modesteam.bazinga.uniques.measures.Measure;
-import com.modesteam.bazinga.uniques.measures.RectangleCollider;
 
 public class MainMenuScreen implements Screen {
 
@@ -23,14 +24,14 @@ public class MainMenuScreen implements Screen {
 
 		this.game = game;
 
-		texts = new Array<TextEntity>();
-		texts.add(new TextEntity("Start the game", (3f / 8f), new GameScreen(game)));
-		texts.add(new TextEntity("How to Play?", (1f / 4f), new HowToPlayScreen(game)));
-		texts.add(new TextEntity("Exit the game!", (1f / 8f), new ExitScreen()));
-
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Measure.getScreenWidth(), Measure.getScreenHeight());
 		Texture logoTexture = new Texture(Gdx.files.internal("bazinga.png"));
+
+		texts = new Array<TextEntity>();
+		texts.add(new LineTextEntity("Start the game", Measure.getProportionalY(3f / 8f), ScreenType.GAME_SCREEN));
+		texts.add(new LineTextEntity("How to Play?", Measure.getProportionalY(1f / 4f), ScreenType.HOW_TO_PLAY));
+		texts.add(new LineTextEntity("Exit the game!", Measure.getProportionalY(1f / 8f), ScreenType.EXIT_SCREEN));
 
 		logoSprite = new Sprite(logoTexture);
 		logoSprite.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -60,26 +61,9 @@ public class MainMenuScreen implements Screen {
 			text.draw(game);
 		}
 
-		updateScreen();
+		InputHandle.handleTextEntities(texts, game);
 
 		game.getBatch().end();
-	}
-
-	private void updateScreen() {
-
-		if (Gdx.input.isTouched()) {
-
-			float x = Gdx.input.getX();
-			float y = Gdx.input.getY();
-
-			for (TextEntity text : texts) {
-
-				if (RectangleCollider.areCollided(x, y, text.getCollisionRect())) {
-
-					game.setScreen(text.getScreen());
-				}
-			}
-		}
 	}
 
 	@Override
