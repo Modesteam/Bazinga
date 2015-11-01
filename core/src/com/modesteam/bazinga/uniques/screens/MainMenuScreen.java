@@ -1,6 +1,7 @@
 package com.modesteam.bazinga.uniques.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,7 +11,7 @@ import com.badlogic.gdx.utils.Array;
 import com.modesteam.bazinga.entities.text.LineTextEntity;
 import com.modesteam.bazinga.entities.text.TextEntity;
 import com.modesteam.bazinga.uniques.Bazinga;
-import com.modesteam.bazinga.uniques.InputHandle;
+import com.modesteam.bazinga.uniques.InputHandler;
 import com.modesteam.bazinga.uniques.measures.Measure;
 
 public class MainMenuScreen implements Screen {
@@ -61,7 +62,8 @@ public class MainMenuScreen implements Screen {
 			text.draw(game);
 		}
 
-		InputHandle.handleTextEntities(texts, game);
+		InputHandler.handleKeyCommand(Input.Keys.BACK, ScreenType.EXIT_SCREEN, game, delta);
+		InputHandler.handleTextEntities(texts, game, delta);
 
 		game.getBatch().end();
 	}

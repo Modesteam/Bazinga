@@ -45,15 +45,16 @@ public abstract class Measure {
 
 	public static float getProportionalY(float ratio) {
 
-		float proportionalY = screenHeight * ratio;
-
-		return proportionalY;
+		return screenHeight * ratio;
 	}
 
+	public static float getProportionalX(float ratio) {
+
+		return screenWidth * ratio;
+	}
 
 	public static int getFontSize() {
 
 		return fontSize;
 	}
-
 }

@@ -1,6 +1,7 @@
 package com.modesteam.bazinga.uniques;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.modesteam.bazinga.uniques.measures.Measure;
 import com.modesteam.bazinga.uniques.screens.MainMenuScreen;
@@ -14,6 +15,7 @@ public class Bazinga extends Game {
 
 	public void create() {
 
+		Gdx.input.setCatchBackKey(true);
 		generateStandardMeasureValues();
 		generateStandardAssets();
 		batch = new SpriteBatch();

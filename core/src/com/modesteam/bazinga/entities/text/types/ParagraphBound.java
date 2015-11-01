@@ -23,8 +23,8 @@ public class ParagraphBound implements TextBound {
 
 	private void generateBoxes(String text, float centerY) {
 
-		GlyphLayout glyph = new GlyphLayout(Font.getFont(), "<>");
-		final int maxLettersPerLine = Math.round(Measure.getScreenWidth() / glyph.width);
+		GlyphLayout glyph = new GlyphLayout(Font.getFont(), "%");
+		final int maxLettersPerLine = Math.round(Measure.getScreenWidth() / (glyph.width * 1.5f));
 		Array<String> textLines = new Array<String>();
 		String[] tokens = text.split(" ");
 		for (String token : tokens) {

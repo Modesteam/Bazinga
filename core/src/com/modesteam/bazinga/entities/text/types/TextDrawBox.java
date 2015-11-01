@@ -137,4 +137,9 @@ public class TextDrawBox {
 
 		Font.getFont().draw(game.getBatch(), text, x, y, start, end, targetWidth, halign, wrap);
 	}
+
+	public void draw(Bazinga game, float x, float y) {
+
+		Font.getFont().draw(game.getBatch(), text, x, y, start, end, targetWidth, halign, wrap);
+	}
 }
